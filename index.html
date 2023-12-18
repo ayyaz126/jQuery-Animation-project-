@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #mainimage{
+            width: 100%;
+            height: 550px;
+        }
+        .imgStyle{
+            width: 24%;
+            height: 200px;
+            border: 2px solid black;
+
+        }
+        
+    </style>
+</head>
+<body>
+    <span> Select Animation </span>
+    <select  id = "new">
+        <option  value="fade" > Fading Effect </option>
+        <option  value="slide" > Sliding Effect </option>
+    </select>
+    <br>
+         <img src="/img/pic1.jpg" id="mainimage">
+         <div id="box" >
+             <img src="/img/pic1.jpg" class="imgStyle" >
+             <img src="/img/pic2.jpg" class="imgStyle" >
+             <img src="/img/pic3.jpg" class="imgStyle" >
+             <img src="/img/pic4.jpg" class="imgStyle" >
+         </div>
+
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        
+
+         <script>
+                 
+              $(document).ready(function(){
+                  $("#box img").on({
+                     mouseover:function(){
+                        $(this).css({
+                            "cursor": "pointer",
+                           "border": "3px solid red" 
+                        });
+                     } ,
+                       //  This is a 2nd part
+                     mouseout: function (){
+                        $(this).css({
+                            "cursor": "default",
+                           "border": "3px solid black" 
+                        });
+                     },
+                          // This is a 3rd part
+                     click:function(){
+                         var imgsrc = $(this).attr('src');
+
+                         //getting the dropdown
+                         var effect = $("#new").val();
+
+                         if(effect=="fade"){
+                            $("#mainimage").fadeOut(1000,function(){
+                             $(this).attr('src',imgsrc);
+                         }). fadeIn(1000) ;
+                         }
+                         else{
+                            $("#mainimage").slideUp(1000,function(){
+                             $(this).attr('src',imgsrc);
+                         }). slideDown(1000) ;
+                         }
+                        
+                     }
+                  })
+              })
+
+                // This is a first part 
+              $(document).ready(function(){
+                 $("#box img").on({
+                     mouseover:function(){
+                         $(this).css({
+                            "cursor": "pointer",
+                           "border": "3px solid red", 
+                         });
+                     },
+                    //  This is a 2nd part
+                    mouseout:function(){
+                        $(this).css({
+                            "cursor": "default",
+                           "border": "3px solid black"  
+                        });
+                    },
+                         //This is a 3rd part
+                         click:function(){
+                             var imgsrc = $(this).attr('src');
+                             $("#mainimage").fadeOut(1000,function(){
+                                $(this).attr('src',imgsrc);
+                             }).fadeIn(1000);
+                         }
+                 });             
+              });
+         </script>
+</body>
+</html>
